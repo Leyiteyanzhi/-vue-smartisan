@@ -9,6 +9,22 @@ let store = new Vuex.Store({
 
     ]
   },
+  getters: {
+    totleCount (state) {
+      let count = 0
+      state.carPanelData.forEach((goods) => {
+        count += goods.count
+      })
+      return count
+    },
+    totlePrice (state) {
+      let price = 0
+      state.carPanelData.forEach((goods) => {
+        price += goods.count * goods.price
+      })
+      return price
+    }
+  },
   mutations: {
     addCarPanelData (state, data) {
       let bOff = true
