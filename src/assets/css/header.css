@@ -188,7 +188,7 @@
 }
 /*购物车*/
 .nav-cart{
-  margin-left: 21px;
+    margin-left: 21px;
     width: 61px;
 }
 .nav-cart>a{
@@ -245,7 +245,6 @@
     position: absolute;
     right: 0;
     padding-top: 18px;
-    opacity: 1;
     top: 18px;
     z-index: 30;
     width: 360px;
