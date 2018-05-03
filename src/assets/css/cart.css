@@ -1,10 +1,10 @@
 @charset "utf-8";
-.nav-cart{
+/* .nav-cart{
 	visibility: hidden;
-}
-.nav-sub{
+} */
+/* .nav-sub{
 	display: none;
-}
+} */
 .cart-box{
     position: relative;
     margin-top: 40px;

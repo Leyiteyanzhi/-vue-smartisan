@@ -14,7 +14,7 @@
             </div>
             <div class="item-btns clearfix">
                 <span class="item-gray-btn">
-                    <a href="javascript:;" target="_blank">查看详情</a> 
+                    <a href="javascript:;" target="_blank"><router-link :to="{name: 'Item',query: {itemId:item.sku_info[itemIndex].sku_id}}">查看详情</router-link></a> 
                 </span>
                 <span class="item-blue-btn" @click="addCarPanelHandle(item.sku_info[itemIndex])">加入购物车 </span>
             </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="discount-icon">false</div>
             <div class="item-cover">
-                <a href="javascript:;" target="_blank"></a>
+                <router-link :to="{name: 'Item',query: {itemId:item.sku_info[itemIndex].sku_id}}"></router-link>
             </div>
         </div>
     </div>
@@ -46,7 +46,8 @@ export default {
             this.itemIndex = index
         },
         addCarPanelHandle (data) {
-            this.$store.commit('addCarPanelData',data)
+            let itemData = {info: data, count: 1}
+            this.$store.commit('addCarPanelData',itemData)
         }
     }
 }
