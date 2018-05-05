@@ -9,18 +9,18 @@
                     <div class="box-inner js-checkout-address-panel ">
                         <div class="address-common-table js-multiple-address-panel">
                             <ul class="address-item-list clear js-address-item-list">
-                                <li class="js-choose-address  selected-address-item">
+                                <li class="js-choose-address" :class="{'selected-address-item':receiveIndex == index}" v-for="receive,index in receiveInfo" @click="chooseReceive(index)">
                                     <div class="address-item">
-                                        <div class="name-section">  王某某  </div>
-                                        <div class="mobile-section">13810000000</div>
-                                        <div class="detail-section"> 北京市 市辖区 海淀区<br> 上地十街辉煌国际大商西6号楼319室 </div>
+                                        <div class="name-section">{{receive.name}}</div>
+                                        <div class="mobile-section">{{receive.phone}}</div>
+                                        <div class="detail-section"> {{receive.province}} {{receive.city}} {{receive.county}}<br> {{receive.add}} </div>
                                     </div>
                                     <div class="operation-section">
                                         <span class="update-btn js-edit-address">修改</span>
                                         <span class="delete-btn js-delete-address">删除</span>
                                     </div>
                                 </li>
-                                <li class="add-address-item js-add-address">
+                                <li class="add-address-item js-add-address" @click="showPop">
                                     <p>使用新地址</p>
                                 </li>
                             </ul>
@@ -101,29 +101,62 @@
                 </div>
             </div>
         </div>
+        <address-pop v-if="popShow" @close="closePop"></address-pop>
     </div>
 </template>
 
 <script>
+import addressPop from '@/components/address-pop'
 export default {
-  computed: {
-    checkedGoods () {
-        return this.$store.getters.checkedGoods
-    },
-    checkedCount () {
-        return this.$store.getters.checkedCount
-    }, 
-    checkedPrice () {
-        return this.$store.getters.checkedPrice
-    },
-    freeight () {
-        let freeight = 8
-        if (this.checkedPrice > 88){
-            freeight =0
+    data () {
+        return {
+            receiveIndex: 0,
+            popShow: false
         }
-        return freeight
-    }
-  }
+    },
+    created () {
+        this.$store.state.receiveInfo.forEach((receive, index) => {
+            if(receive.default){
+                this.receiveIndex = index
+                return
+            }
+        });
+    },
+    components: {
+        addressPop
+    },
+    computed: {
+        checkedGoods () {
+            return this.$store.getters.checkedGoods
+        },
+        checkedCount () {
+            return this.$store.getters.checkedCount
+        }, 
+        checkedPrice () {
+            return this.$store.getters.checkedPrice
+        },
+        freeight () {
+            let freeight = 8
+            if (this.checkedPrice > 88){
+                freeight =0
+            }
+            return freeight
+        },
+        receiveInfo () {
+            return this.$store.state.receiveInfo
+        }
+    },
+    methods: {
+        chooseReceive (index) {
+            this.receiveIndex = index
+        },
+        closePop () {
+            this.popShow = false
+        },
+        showPop () {
+            this.popShow = true
+        }
+    },
 }
 </script>
 

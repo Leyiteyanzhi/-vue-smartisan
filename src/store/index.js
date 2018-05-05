@@ -5,8 +5,34 @@ Vue.use(Vuex)
 
 let store = new Vuex.Store({
   state: {
-    carPanelData: [
-    ],
+    carPanelData: [],
+    receiveInfo: [{
+      'name': '王某某',
+      'phone': '13811111111',
+      'areaCode': '010',
+      'landLine': '64627856',
+      'provinceId': 110000,
+      'province': '北京市',
+      'cityId': 110100,
+      'city': '市辖区',
+      'countyId': 110106,
+      'county': '海淀区',
+      'add': '上地十街辉煌国际西6号楼319室',
+      'default': true
+    }, {
+      'name': '李某某',
+      'phone': '13811111111',
+      'areaCode': '010',
+      'landLine': '64627856',
+      'provinceId': 110000,
+      'province': '深圳市',
+      'cityId': 110100,
+      'city': '市辖区',
+      'countyId': 110106,
+      'county': '宝安区',
+      'add': '某某小巷子',
+      'default': false
+    }],
     maxOff: false,
     carShow: false,
     carTimer: null
